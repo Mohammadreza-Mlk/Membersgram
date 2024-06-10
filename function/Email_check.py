@@ -5,23 +5,24 @@ from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.touch_action import TouchAction
 import time
  
-url = 'http://localhost:4721'
+# cap: Dict[str, Any] = {
+#     'platformName': 'Android',
+#     'automationName': 'uiautomator2',
+#     'deviceName': 'SamsungA71',
+#     "platformVersion": "13.0",
+#     'language': 'en',
+#     'locale': 'us'
+# }
+# url = 'http://localhost:4721'
+# driver_SamsungA71 = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 
-cap: Dict[str, Any] = {
-    'platformName': 'Android',
-    'automationName': 'uiautomator2',
-    'deviceName': 'SamsungA71',
-    "platformVersion": "13.0",
-    'language': 'en',
-    'locale': 'us'
-}
 
 def Email_check(driver_SamsungA71):
-    time.sleep(10)
+    time.sleep(1)
     touch = TouchAction(driver_SamsungA71)  
     
     try:
-        time.sleep(15)
+        time.sleep(2)
         NeedEmail = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                             value='//android.widget.TextView[@text="Choose a login email"]')
         if NeedEmail:
@@ -29,7 +30,7 @@ def Email_check(driver_SamsungA71):
             EmailInput = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                             value='//android.widget.EditText')
         
-            EmailInput.send_keys("pnxdevices@gmail.com")
+            EmailInput.send_keys("testphoenixmlk@gmail.com")
             time.sleep(2)
             nextEmailButtun = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                             value='//android.widget.FrameLayout[@content-desc="Done"]/android.view.View')
@@ -77,14 +78,15 @@ def Email_check(driver_SamsungA71):
             time.sleep(2)
 
             TelegramApp = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                                                value='//android.widget.TextView[@content-desc="Telegram"]')
+                                                                value='//android.widget.TextView[@content-desc="Telegram Beta"]')
             TelegramApp.click()
             time.sleep(2)
             touch.long_press(x=270, y=950).release().perform()
             time.sleep(1)
             touch.tap(x=240, y=824).release().perform()
-            time.slee(75)
+            
     
     except:
         print('need email not found')
-# Email_check()
+        
+# Email_check(driver_SamsungA71)

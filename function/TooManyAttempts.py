@@ -18,28 +18,33 @@ cap: Dict[str, Any] = {
 }
  
 def TooManyAttempts(driver_SamsungA71):
+    touch = TouchAction(driver_SamsungA71)
+
     try:
         
             
-        time.sleep(5)
+        time.sleep(2)
         TooManyAttemptsText = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                                         value='//android.widget.TextView[@text="Too many attempts, please try again later."]') 
         if TooManyAttemptsText:
-            time.sleep(4)
+            time.sleep(2)
             OkButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                                         value='//android.widget.TextView[@text="OK"]')
             OkButton.click()
             driver_SamsungA71.press_keycode(3)
             time.sleep(2)
             
-            Musicplayer = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                            value='//android.widget.TextView[@content-desc="Samsung Music"]')
-            Musicplayer.click()
-            time.sleep(2)
-            AlarmSound = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                            value='//android.view.ViewGroup[@content-desc="red alarm sound fara-download.ir, fara-download.ir, Currently being played."]')
+        
+        touch.long_press(x=405, y=295).release().perform()
+        time.sleep(2)
+        
+        Unistall = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                            value='//android.widget.FrameLayout[@content-desc="Uninstall, Button"]/android.widget.LinearLayout')
     
-            AlarmSound.click()
+        Unistall.click()
+        confirmUninstall = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                            value='//android.widget.Button[@resource-id="android:id/button1"]')
+        confirmUninstall.click()
     except:
         print('TooManyAttempts not found')
         

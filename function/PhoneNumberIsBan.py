@@ -21,9 +21,9 @@ def PhonenNumberBan(driver_SamsungA71):
     touch = TouchAction(driver_SamsungA71)
     
     print("start Check Banned")
-    time.sleep(3)
+    time.sleep(2)
     try:
-        time.sleep(5)
+        time.sleep(2)
         PhoneNumberBanned = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                                 value='//android.widget.TextView[@text="This phone number is banned."]')
 

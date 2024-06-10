@@ -3,7 +3,8 @@ from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.touch_action import TouchAction
-import time
+import sys, time
+sys.path.append("../TelegramAuto")
  
 url = 'http://localhost:4721'
 
@@ -19,13 +20,15 @@ cap: Dict[str, Any] = {
 ######## test for sms
 
 
-time.sleep(3)
+time.sleep(1)
 def check_for_send_verify_code_to_another_telegram_sesseion(driver_SamsungA71):
-    time.sleep(5)
+    time.sleep(1)
     touch = TouchAction(driver_SamsungA71)
     try:
         AnothertelegramFOrVerifyCode  = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                             value='//android.widget.TextView[@text="Check your Telegram messages"]')
+        time.sleep(2)
+        print("Another telegram found")
         if AnothertelegramFOrVerifyCode:
             BackButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                             value='//android.widget.ImageView[@content-desc="Back"]')
@@ -40,5 +43,8 @@ def check_for_send_verify_code_to_another_telegram_sesseion(driver_SamsungA71):
                                             value='//android.view.ViewGroup/android.widget.ImageView')
             touch.long_press(backspaceButtonInKeybord).release().perform()
             
+            return True
+        return False
     except:
         print('another telegram for verify code not found')
+        return False
