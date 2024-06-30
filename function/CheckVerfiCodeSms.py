@@ -7,7 +7,7 @@ import sys, time
 sys.path.append("../TelegramAuto")
 
 from function.GetNumberAndGetCodeApi import GetVerifycode
-
+from function.UnistallApp import UnistalTelegram
 # from devices.A71New import url, cap
 url = 'http://localhost:4721'
 
@@ -38,11 +38,10 @@ def Check_Verify_code(driver_SamsungA71, phonNumber, activationId):
             if len(verificationcodeTel) > 0 : 
                 time.sleep(2)
                 VerifycodeInputBox.send_keys(verificationcodeTel)
-                time.sleep(5)
                 
-                print(verificationcodeTel)
                 return True
         else : 
+            UnistalTelegram(driver_SamsungA71)
             return False
     except:
         print('Send Sms Not found')

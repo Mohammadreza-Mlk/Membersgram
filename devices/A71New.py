@@ -11,13 +11,13 @@ from function.CallingNew import Calling
 from function.check_for_send_verify_code_to_another_telegram_sesseion import check_for_send_verify_code_to_another_telegram_sesseion
 from function.Email_check import Email_check
 from function.GetNumberAndGetCodeApi import GetNumberApi
-from function.PhoneNumberIsBan import PhonenNumberBan
+from function.PhoneNumberIsBan import PhonenNumberBan, InvalidPhonenNumber
 from function.CheckVerfiCodeSms import Check_Verify_code
 from function.NameAccount import RandomName
 from function.TooManyAttempts import TooManyAttempts
+from function.PlusMessenger import PlusMessanger
 from function.FotorPlus import FotorPlus
 from function.LogOut import LogOut
-from function.UnistallApp import UnistalTelegram
 cap: Dict[str, Any] = {
     'platformName': 'Android',
     'automationName': 'uiautomator2',
@@ -31,17 +31,18 @@ url = 'http://localhost:4721'
 
 driver_SamsungA71 = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 touch = TouchAction(driver_SamsungA71)
-
-
 phoneNumber = ""
 activationId = ""
 
+# TelegramApp =  driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+#                                             value='//android.widget.TextView[@content-desc="Telegram Beta"]')
+
 time.sleep(5)
-InstallTelegram(driver_SamsungA71) 
+TelegramApp = InstallTelegram(driver_SamsungA71) 
+
 print("start create Account")
 for i in range(20):
-       
-       
+             
     # for i in range(1):
     try:
         time.sleep(5)
@@ -80,10 +81,12 @@ for i in range(20):
     time.sleep(2)
     TooManyAttempts(driver_SamsungA71)
     time.sleep(4)
+    InvalidPhonenNumber(driver_SamsungA71)
+    time.sleep(4)
     resultBan = PhonenNumberBan(driver_SamsungA71)
     if not resultBan :
         time.sleep(3)
-        Email_check(driver_SamsungA71)
+        Email_check(driver_SamsungA71, TelegramApp)
 
         time.sleep(3)
         anotherTelegram = check_for_send_verify_code_to_another_telegram_sesseion(driver_SamsungA71)
@@ -91,21 +94,18 @@ for i in range(20):
             # for i in range (2):
                 time.sleep(4)
                 print(activationId)
-                resultCalling = Calling(driver_SamsungA71, activationId)
-                if resultCalling:
-                    print("start Unistall App")
-                    time.sleep(5)
-                    driver_SamsungA71.press_keycode(3)
+                resultCalling = Calling(driver_SamsungA71, activationId, phoneNumber)
+                if not resultCalling:
                     
-                else:    
                     time.sleep(5)
                     resultCode = Check_Verify_code(driver_SamsungA71, phoneNumber , activationId)
                     if resultCode : 
                         RandomName(driver_SamsungA71)
                         time.sleep(6)
-                        FotorPlus(driver_SamsungA71, phoneNumber)
-                        time.sleep(6)
-                        LogOut(driver_SamsungA71)
+                        PlusMessanger(driver_SamsungA71, phoneNumber, TelegramApp)
+                        # FotorPlus(driver_SamsungA71, phoneNumber)
+                        # time.sleep(6)
+                        # LogOut(driver_SamsungA71)
         else:
             print("another telegram session in phone number")
     # time.sleep(2)40610

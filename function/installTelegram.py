@@ -29,16 +29,16 @@ def InstallTelegram(driver_SamsungA71):
                                                 value='//android.widget.Button[@resource-id="android:id/button1"]')
     time.sleep(1)
     InstallButton.click()
-    time.sleep(10)
+    time.sleep(15)
     # DoneButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
     #                                             value='//android.widget.Button[@resource-id="android:id/button2"]')
     # if DoneButton:
     #     print("DoneButton founde")
     #     time.sleep(9.5)
     #     DoneButton.click()
-    touch.tap(x=400, y=400).release().perform()
+    touch.tap(x=400, y=600).release().perform()
     time.sleep(10)
-    touch.tap(x=400, y=400).release().perform()
+    touch.tap(x=400, y=600).release().perform()
     time.sleep(6)
 
     start_x = 800
@@ -48,18 +48,18 @@ def InstallTelegram(driver_SamsungA71):
     driver_SamsungA71.swipe(start_x, start_y, end_x, end_y, duration=200)
 
     time.sleep(5)
-    TelegamApp = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                                value='//android.widget.TextView[@content-desc="Telegram Beta"]')
+    TelegamAppMenu = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                value='//android.widget.TextView[@content-desc="Telegram"]')
     time.sleep(0.5)
-    touch.long_press(TelegamApp).release().perform()
+    touch.long_press(TelegamAppMenu).release().perform()
 
 
     time.sleep(5)
-    TelegamAppInHomeScreen = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                                value='//android.widget.TextView[@content-desc="Telegram Beta"]')
+    TelegamApp = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                value='//android.widget.TextView[@content-desc="Telegram"]')
 
     time.sleep(3)
-    touch.long_press(TelegamAppInHomeScreen).release().perform()
+    touch.long_press(TelegamApp).release().perform()
 
     time.sleep(2)
 
@@ -75,7 +75,7 @@ def InstallTelegram(driver_SamsungA71):
     Permision.click()
     time.sleep(2)
     contact = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                                value='//androidx.recyclerview.widget.RecyclerView[@resource-id="com.android.permissioncontroller:id/recycler_view"]/android.widget.LinearLayout[6]/android.widget.RelativeLayout')
+                                                value='//android.widget.TextView[@resource-id="android:id/title" and @text="Contacts"]')
     time.sleep(2)
     contact.click()
 
@@ -120,15 +120,22 @@ def InstallTelegram(driver_SamsungA71):
     
 
     time.sleep(1)  
-    TelegamAppInHomeScreen.click()
-    time.sleep(5)  
-    AppUpdateTelegram = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+    
+    TelegamApp.click()
+    try:
+        time.sleep(15)  
+        AppUpdateTelegram  = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                                 value='//android.widget.TextView[@resource-id="android:id/alertTitle"]')
-    time.sleep(20) 
-    if AppUpdateTelegram:
-        
-        AskMeInDay = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                                value='//android.widget.Button[@resource-id="android:id/button2"]')
-        time.sleep(1)
-        AskMeInDay.click()
-        
+    
+     
+        if AppUpdateTelegram:
+            
+            AskMeInDay = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                    value='//android.widget.Button[@resource-id="android:id/button2"]')
+            time.sleep(1)
+            AskMeInDay.click()
+    except:
+        print("")
+    
+    
+    return TelegamApp

@@ -1,4 +1,6 @@
 from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.common.touch_action import TouchAction
+
 import random,time
 from typing import Any, Dict
 
@@ -15,6 +17,8 @@ url = 'http://localhost:4721'
 
 
 def RandomName(driver_SamsungA71):
+    touch = TouchAction(driver_SamsungA71)
+
     try: 
         global Account_names
         Account_names = [
@@ -45,7 +49,32 @@ def RandomName(driver_SamsungA71):
             NAmeInputNextButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
                                                     value='//android.widget.FrameLayout[@content-desc="Done"]/android.view.View')
             NAmeInputNextButton.click()
+            
+            time.sleep(8)
+            
+            SearchButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                                    value='//android.widget.ImageButton[@content-desc="Search"]/android.widget.ImageView')
+            SearchButton.click()
+            time.sleep(4)
+        
+
+            SearchInput = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                                value='//android.widget.EditText[@text="Search"]')
             time.sleep(2)
+            SearchInput.send_keys("fotorchannelpnx")
+            time.sleep(7)
+            touch.tap(x=400, y=415).release().perform()
+            time.sleep(5)
+            JoinButton = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                            value='//android.view.View[@content-desc="JOIN"]')
+            time.sleep(2)
+            JoinButton.click()
+
+            time.sleep(2)
+            BackButtonInchannel = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
+                                                                    value='//android.widget.ImageView[@content-desc="Go back"]')
+            time.sleep(2)
+            BackButtonInchannel.click()
     except:
         print("Name is not found")
 

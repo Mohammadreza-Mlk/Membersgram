@@ -17,7 +17,7 @@ cap: Dict[str, Any] = {
 }
 url = 'http://localhost:4721'
 
-def Calling(driver_SamsungA71, activationId):
+def Calling(driver_SamsungA71, activationId, phoneNumber):
     try:
         touch = TouchAction(driver_SamsungA71)  
         print("start check_For_Calling_Code")
@@ -36,12 +36,13 @@ def Calling(driver_SamsungA71, activationId):
             
             headers = {'activationId': f'{activationId}'}
             print(activationId)
-            # print("2 minute to cancell number :")
-            
-            
-            driver_SamsungA71.press_keycode(3)
+            # print("2 minute to cancell number :")   
+            # driver_SamsungA71.press_keycode(3)
             time.sleep(3)
+            
             UnistalTelegram(driver_SamsungA71)
+                    
+            # UnistalTelegram(driver_SamsungA71)
             # time.sleep(120)
             # CancelBuyPoneNumberApi = 'https://fotorplusapi.membersgram.com/cancelPurchase'
             # CancelBuyRequest = requests.get(CancelBuyPoneNumberApi, headers=headers)

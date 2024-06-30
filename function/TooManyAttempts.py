@@ -4,6 +4,9 @@ from typing import Any, Dict, sys
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.touch_action import TouchAction
+import sys, time
+sys.path.append("../TelegramAuto")
+from function.UnistallApp import UnistalTelegram
 
 # from devices.A71New import url, cap
 url = 'http://localhost:4721'
@@ -38,13 +41,7 @@ def TooManyAttempts(driver_SamsungA71):
         touch.long_press(x=405, y=295).release().perform()
         time.sleep(2)
         
-        Unistall = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                            value='//android.widget.FrameLayout[@content-desc="Uninstall, Button"]/android.widget.LinearLayout')
-    
-        Unistall.click()
-        confirmUninstall = driver_SamsungA71.find_element(by=AppiumBy.XPATH,
-                                            value='//android.widget.Button[@resource-id="android:id/button1"]')
-        confirmUninstall.click()
+        UnistalTelegram(driver_SamsungA71)
     except:
         print('TooManyAttempts not found')
         
