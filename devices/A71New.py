@@ -3,8 +3,10 @@ from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.touch_action import TouchAction
-import sys, time
-sys.path.append("../TelegramAuto")
+import sys, time, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.append("../Membersgram")
 from function.ChangeLanguage import Language
 from function.Register import Register
 from function.Login import LoginEmail
@@ -28,34 +30,42 @@ cap: Dict[str, Any] = {
     'locale': 'us'
 }
 url = 'http://localhost:4721'
-
+desired_caps: Dict[str, Any] = {
+    'platformName': 'Android',
+    'automationName': 'uiautomator2',
+    'deviceName': 'SamsungA71',
+    "platformVersion": "13.0",
+    'language': 'en',
+    'locale': 'us'
+}
 
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 touch = TouchAction(driver)
+
 Language(driver)
-time.sleep(4)
+time.sleep(1.5)
 Register(driver, touch)
-time.sleep(4)
+time.sleep(1.5)
 AddAccountFullScreen(driver)
-time.sleep(4)
+time.sleep(1.5)
 LogOut(driver)
-time.sleep(4)
+time.sleep(1.5)
 Language(driver)
-time.sleep(4)
+time.sleep(1.5)
 LoginEmail(driver)
-time.sleep(4)
+time.sleep(1.5)
 AddAccountFullScreen(driver)
-time.sleep(4)
+time.sleep(1.5)
 OrderMemberByCoin(driver)
-time.sleep(4)
+time.sleep(1.5)
 OrderMemberByPurchase(driver)
-time.sleep(4)
+time.sleep(1.5)
 OrderViewByCoin(driver)
-time.sleep(4)
+time.sleep(1.5)
 OrderViewByPurchase(driver)
-time.sleep(4)
+time.sleep(1.5)
 TransferCoin(driver)
-time.sleep(4)
+time.sleep(1.5)
 BuyCoin(driver)
-time.sleep(4)
-AddAccount(driver, touch)
+time.sleep(1.5)
+AddAccount(driver, touch, desired_caps)

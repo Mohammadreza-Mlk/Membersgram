@@ -10,11 +10,11 @@ import sys, time
 
  
 def BuyCoin(driver):
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     CoinTab = driver.find_element(by=AppiumBy.XPATH,
                     value='(//android.widget.ImageView[@resource-id="gram.members.android:id/navigation_bar_item_icon_view"])[2]')
     CoinTab.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     BuyTab = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Buy"]')
 
@@ -23,17 +23,17 @@ def BuyCoin(driver):
     Package_of_FiveThousandCoins = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="5,000"]')
     Package_of_FiveThousandCoins.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
 
     AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     AgreeButtonInGoogleButtomsheet.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     OneTapBuy.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
 
     SeccessfulPaymentForCoin = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Congratulations"]')

@@ -28,11 +28,11 @@ def OrderMemberByPurchase(driver):
     except:
         print("Package loaded")
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     WorldPackage = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="🌏  World"]')
     WorldPackage.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
         
     OrderMemberByPurchase = driver.find_element(by=AppiumBy.XPATH,
@@ -56,11 +56,11 @@ def OrderMemberByPurchase(driver):
             Got_it_InMemberNotice.click()
     except:
         print("There is no member notice")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     EmptyIdError = driver.find_element(by=AppiumBy.XPATH,
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
@@ -74,7 +74,7 @@ def OrderMemberByPurchase(driver):
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     FormatIdError = driver.find_element(by=AppiumBy.XPATH,
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
@@ -83,28 +83,28 @@ def OrderMemberByPurchase(driver):
         print("Format Id incorrect Error via purchase is : Failed ❌")
     UsernameInput.send_keys("testpnx3")
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
         
         
-    driver.implicitly_wait(5) 
+    driver.implicitly_wait(30) 
     ConfirmButtomShit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Yes, next"]')
     ConfirmButtomShit.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PayButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Pay"]')
     PayButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     
     AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
         value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     AgreeButtonInGoogleButtomsheet.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     OneTapBuy.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
     
     SeccessfulPayment = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.TextView[@text="Successful payment"]')
@@ -128,12 +128,12 @@ def OrderMemberByPurchase(driver):
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("testpnx3")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Next"]')
     NextButton.click()
     
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     TooManyOrderForChannel = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.TextView[@text="Too many orders in progress"]')
     if TooManyOrderForChannel:
@@ -141,14 +141,14 @@ def OrderMemberByPurchase(driver):
             OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="OK"]')
             OkForTooManyChannel.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             Backbutton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.ImageButton[@content-desc="Navigate up"]')
             Backbutton.click()
             time.sleep(2)
     else:
             print("Too Many Order For Channel via purchase is : Failed ❌")
-            driver.implicitly_wait(5) 
+            driver.implicitly_wait(30) 
                     
                     
                     
@@ -157,16 +157,16 @@ def OrderMemberByPurchase(driver):
     NigeriaMember = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Nigeria"]')
     NigeriaMember.click()              
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     GetMemberByPurchaseNigeria = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.GridView[@content-desc="Member bundles list"]/android.view.ViewGroup[1]')
 
     GetMemberByPurchaseNigeria.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     EmptyIdError = driver.find_element(by=AppiumBy.XPATH,
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
@@ -180,7 +180,7 @@ def OrderMemberByPurchase(driver):
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     FormatIdError = driver.find_element(by=AppiumBy.XPATH,
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
@@ -192,7 +192,7 @@ def OrderMemberByPurchase(driver):
     UsernameInput.send_keys("testpnx3")
     NextButton.click()
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     TooManyOrderForChannel = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.TextView[@text="Too many orders in progress"]')
     if TooManyOrderForChannel:
@@ -201,32 +201,32 @@ def OrderMemberByPurchase(driver):
             OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="OK"]')
             OkForTooManyChannel.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             
             UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
             UsernameInput.send_keys("testpnx4")
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             NextButton.click()
-            driver.implicitly_wait(5) 
+            driver.implicitly_wait(30) 
             ConfirmButtomShit = driver.find_element(by=AppiumBy.XPATH,
                             value='//android.widget.Button[@text="Yes, next"]')
             ConfirmButtomShit.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             PayButton = driver.find_element(by=AppiumBy.XPATH,
                                 value='//android.widget.Button[@text="Pay"]')
             PayButton.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             
             AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
             AgreeButtonInGoogleButtomsheet.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
 
             OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                             value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
             OneTapBuy.click()
-            driver.implicitly_wait(15)
+            driver.implicitly_wait(30)
             SeccessfulPayment = driver.find_element(by=AppiumBy.XPATH,
                                 value='//android.widget.TextView[@text="Successful payment"]')
             SeccessfulPayment.click()

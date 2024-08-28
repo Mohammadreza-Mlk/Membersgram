@@ -28,15 +28,15 @@ def OrderMemberByCoin(driver):
             print("Package Member is : Ok ✅")
     except:
         print("")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     WorldPackage = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="🌏  World"]')
     WorldPackage.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     Order50MemberByCoin = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="50"]')
     Order50MemberByCoin.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     try:
         InsufficientBalance = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Insufficient Balance"]')
@@ -46,7 +46,7 @@ def OrderMemberByCoin(driver):
             CancelButtom.click()
             time.sleep(2)
             BuyCoin(driver)
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             Order50MemberByCoin = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.GridView[@content-desc="Member bundles list"]/android.view.ViewGroup[3]')
             Order50MemberByCoin.click()
@@ -56,15 +56,15 @@ def OrderMemberByCoin(driver):
 
     # for ordercount in range(2):
         # if ordercount == 1 :
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     # Order50MemberByCoin = driver.find_element(by=AppiumBy.XPATH,
     #             value='//android.widget.TextView[@text="50"]')
     # Order50MemberByCoin.click()
-    # driver.implicitly_wait(5)
+    # driver.implicitly_wait(30)
         # else:
     try:
         time.sleep(2)
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(30)
         MemberNotice = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Member order notice"]')
         if MemberNotice:
@@ -73,7 +73,7 @@ def OrderMemberByCoin(driver):
                         value='//android.widget.CheckBox[@resource-id="gram.members.android:id/cbMemberNotice"]')
 
             CheckboxMemberNotice.click()
-            driver.implicitly_wait(5)
+            driver.implicitly_wait(30)
             Got_it_InMemberNotice = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Got it"]')
             Got_it_InMemberNotice.click()
@@ -90,11 +90,11 @@ def OrderMemberByCoin(driver):
         print("Empty Id Empty Error is : pass ✅")
     else:
         print("Empty Id Empty Error is : Failed ❌")
-    driver.implicitly_wait(5)    
+    driver.implicitly_wait(30)    
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("1111")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Next"]')
     NextButton.click()
@@ -163,11 +163,11 @@ def OrderMemberByCoin(driver):
     TooManyOrderForChannel = driver.find_element(by=AppiumBy.XPATH,
                             value='//android.widget.TextView[@text="Too many orders in progress"]')
     if TooManyOrderForChannel :
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(30)
         
         
         print("Too Many Order For Channel is : pass ✅")
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(30)
         OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="OK"]')
         OkForTooManyChannel.click()
@@ -177,7 +177,7 @@ def OrderMemberByCoin(driver):
         print("Too Many Order For Channel is : Failed ❌")
         time.sleep(2) 
     
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
@@ -194,15 +194,15 @@ def OrderMemberByCoin(driver):
         print("Format Id incorrect In country order Error is : Failed ❌")
 
      
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')   
     
 
     UsernameInput.send_keys("testpnx2")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     ConfirmButtomShit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Yes, next"]')
     ConfirmButtomShit.click()

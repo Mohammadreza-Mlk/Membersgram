@@ -20,16 +20,16 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.TextView[@text="View"]')
     
     ViewTab.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     Onepost = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="One Post"]')
     Onepost.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     view1000 = driver.find_element(by=AppiumBy.XPATH,
                 value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[1]')
     view1000.click()
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="Please enter the link to the desired post"]')
 
@@ -37,7 +37,7 @@ def OrderViewByPurchase(driver):
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     LinkEmpty = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="Link must not be empty"]')
     if LinkEmpty:
@@ -45,7 +45,7 @@ def OrderViewByPurchase(driver):
     else:
         print("Link Empty in view one post By Purchase is : Failed ❌")
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
 
@@ -62,22 +62,22 @@ def OrderViewByPurchase(driver):
     PostLink.send_keys("t.me/testpnx1/3")    
     NextButton.click()
         
-    driver.implicitly_wait(5)  
+    driver.implicitly_wait(30)  
     PayInButtomshit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Pay"]')
     PayInButtomshit.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
 
 
     AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     AgreeButtonInGoogleButtomsheet.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     OneTapBuy.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
 
     SeccessfulView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Successful payment"]')
@@ -94,11 +94,11 @@ def OrderViewByPurchase(driver):
     ############## Order View for 5 post 
 
         
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     ViewTab = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="View"]')
     ViewTab.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     FivePost = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="5 Posts"]')
     FivePost.click()
@@ -106,7 +106,7 @@ def OrderViewByPurchase(driver):
                 value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[1]')
     view1000.click()
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
 
@@ -114,7 +114,7 @@ def OrderViewByPurchase(driver):
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="Next"]')
     NextButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     LinkEmpty = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="Username must not be empty"]')
     if LinkEmpty:
@@ -122,7 +122,7 @@ def OrderViewByPurchase(driver):
     else:
         print("Username Empty in view for 5 Purchase is : Failed ❌")
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
 
@@ -138,25 +138,25 @@ def OrderViewByPurchase(driver):
 
     PostLink.send_keys("t.me/testpnx1")    
     NextButton.click()
-    driver.implicitly_wait(5) 
+    driver.implicitly_wait(30) 
     ConfirmBottomSheet = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Yes, next"]')
     ConfirmBottomSheet.click()
-    driver.implicitly_wait(5)  
+    driver.implicitly_wait(30)  
     PayInButtomshit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Pay"]')
     PayInButtomshit.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     AgreeButtonInGoogleButtomsheet.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
     OneTapBuy.click()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(30)
     SeccessfulView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Successful payment"]')
     if SeccessfulView:

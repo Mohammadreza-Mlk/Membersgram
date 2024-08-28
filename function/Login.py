@@ -19,18 +19,18 @@ from appium.options.common import AppiumOptions
 # touch = TouchAction(driver)
 
 def LoginEmail(driver):
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     LoginButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Login"]')
     LoginButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
 
     ############ email & pass is empty  
     LoginButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Login"]')
     LoginButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     ErrorEmailEmpty = driver.find_element(by=AppiumBy.XPATH,
                     value='//*[contains(@text, "Email must not be empty")]')
     if ErrorEmailEmpty:
@@ -45,7 +45,7 @@ def LoginEmail(driver):
     LoginButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Login"]')
     LoginButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     ErrorEmail = driver.find_element(by=AppiumBy.XPATH,
                     value='//*[contains(@text, "Email format is incorrect")]')
 
@@ -78,7 +78,7 @@ def LoginEmail(driver):
     Password.send_keys("111111111")
     LoginButton.click()
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     EmailNotRegistered = driver.find_element(by=AppiumBy.XPATH,
                     value='//*[contains(@text, "This email has not been registered before")]')
 
@@ -111,7 +111,7 @@ def LoginEmail(driver):
 
     Password.send_keys("111111112")
     LoginButton.click()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(30)
     PasswordIncorrect = driver.find_element(by=AppiumBy.XPATH,
                     value='//*[contains(@text, "Password is incorrect")]')
     if PasswordIncorrect:
