@@ -6,10 +6,10 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 from function.BuyCoin import BuyCoin
 import sys, time
-
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 def OrderMemberByCoin(driver):
 
@@ -23,9 +23,11 @@ def OrderMemberByCoin(driver):
             RetryButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Retry"]')
             print("Package Member is : Somthing went wrong ❌")
+            watchlog_instance.increment('LoadPackageMemberByCoinFailed')
             RetryButton.click()
         else:
             print("Package Member is : Ok ✅")
+            watchlog_instance.increment('LoadPackageMemberByCoinPass')
     except:
         print("")
     driver.implicitly_wait(30)
@@ -88,8 +90,10 @@ def OrderMemberByCoin(driver):
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
         print("Empty Id Empty Error is : pass ✅")
+        watchlog_instance.increment('EmptyIdErrorByCoinPass')
     else:
         print("Empty Id Empty Error is : Failed ❌")
+        watchlog_instance.increment('EmptyIdErrorByCoinFailed')
     driver.implicitly_wait(30)    
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
@@ -103,8 +107,10 @@ def OrderMemberByCoin(driver):
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
         print("Format Id incorrect Error is : pass ✅")
+        watchlog_instance.increment('FormatIdIncorrectErrorByCoinPass')
     else:
         print("Format Id incorrect Error is : Failed ❌")
+        watchlog_instance.increment('FormatIdIncorrectErrorByCoinFailed')
     UsernameInput =   driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("testpnx1")
@@ -128,14 +134,16 @@ def OrderMemberByCoin(driver):
         GotItButton.click()
         if GotItButton:
             print("Order Member By Coin is : pass ✅")
+            watchlog_instance.increment('OrderMemberByCoinIsPass')
         else:
             print("Order Member By Coin is : Failed ❌")
+            watchlog_instance.increment('OrderMemberByCoinFalse')
     
         time.sleep(2)
     
     
     
-    
+     
     
     
         
@@ -167,6 +175,7 @@ def OrderMemberByCoin(driver):
         
         
         print("Too Many Order For Channel is : pass ✅")
+        watchlog_instance.increment('TooManyOrderForChannelByCoinPass')
         driver.implicitly_wait(30)
         OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="OK"]')
@@ -175,6 +184,7 @@ def OrderMemberByCoin(driver):
         
     else:
         print("Too Many Order For Channel is : Failed ❌")
+        watchlog_instance.increment('TooManyOrderForChannelByCoinFiled')
         time.sleep(2) 
     
     driver.implicitly_wait(30)
@@ -190,8 +200,10 @@ def OrderMemberByCoin(driver):
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
         print("Format Id incorrect In country order Error is : pass ✅")
+        watchlog_instance.increment('FormatIdIncorrectInCountryOrderByCoinErrorPass')
     else:
         print("Format Id incorrect In country order Error is : Failed ❌")
+        watchlog_instance.increment('FormatIdIncorrectInCountryOrderErrorByCoinFiled')
 
      
     driver.implicitly_wait(30)
@@ -221,8 +233,10 @@ def OrderMemberByCoin(driver):
         GotItButton.click()
         if GotItButton:
             print("Nigeria Member Order By Coin is : pass ✅")
+            watchlog_instance.increment('OrderCountryMemberByCoinByCoinPass')
         else:
             print("Nigeria Member Order By Coin is : Failed ❌")
+            watchlog_instance.increment('OrderCountryMemberByCoinByCoinFailed')
             
     else:
             print("Too Many Order For Channel In Memeber Nigeria is : Failed ❌")

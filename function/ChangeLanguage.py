@@ -1,6 +1,7 @@
 import time
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 
 def Language(driver):
@@ -16,5 +17,6 @@ def Language(driver):
         English = driver.find_element(by=AppiumBy.XPATH,
                                         value='//android.widget.RadioButton[@resource-id="gram.members.android:id/englishButton"]')
         English.click()
+        watchlog_instance.increment('Change_Language')
     except:
             print("language is English")

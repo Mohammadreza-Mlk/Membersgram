@@ -1,10 +1,10 @@
 import time
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
-
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 def LogOut(driver):
     driver.implicitly_wait(15)
@@ -22,4 +22,4 @@ def LogOut(driver):
     ConfirmLogOut = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Logout"]')
     ConfirmLogOut.click()
-  
+    watchlog_instance.increment('LogOut')

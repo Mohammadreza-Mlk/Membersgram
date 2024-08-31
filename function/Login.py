@@ -1,22 +1,10 @@
 
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
-# cap: Dict[str, Any] = {
-#     'platformName': 'Android',
-#     'automationName': 'uiautomator2',
-#     'deviceName': 'SamsungA71',
-#     "platformVersion": "13.0",
-#     'language': 'en',
-#     'locale': 'us'
-# }
-# url = 'http://localhost:4721'
-
-
-# driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
-# touch = TouchAction(driver)
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 def LoginEmail(driver):
     driver.implicitly_wait(30)
@@ -35,8 +23,10 @@ def LoginEmail(driver):
                     value='//*[contains(@text, "Email must not be empty")]')
     if ErrorEmailEmpty:
         print("Email Empty Error is : pass ✅")
+        watchlog_instance.increment('EmailEmptyErrorPass')
     else:
         print("Email Empty Error is : Failed ❌")
+        watchlog_instance.increment('EmailEmptyErrorFaild')
 
     ############ email format incorrect
     EmailBox = driver.find_element(by=AppiumBy.XPATH,
@@ -51,8 +41,10 @@ def LoginEmail(driver):
 
     if ErrorEmail:
         print("Email format Incorrect is : pass ✅ ")
+        watchlog_instance.increment('EmailFormatIncorrectPass')
     else:
         print("Email format Incorrect is : Failed ❌")
+        watchlog_instance.increment('EmailFormatIncorrectFaild')
     ############ email  True and password Empty
     driver.implicitly_wait(8)
     EmailBox = driver.find_element(by=AppiumBy.XPATH,
@@ -67,8 +59,10 @@ def LoginEmail(driver):
                     value='//*[contains(@text, "Password must not be empty")]')
     if PasswordEmpty:
         print("Password must not be empty Error is : Pass ✅")
+        watchlog_instance.increment('PasswordMustNotBeEmptyErrorPass')
     else:
         print("Password must not be empty Error is : Failed ❌")
+        watchlog_instance.increment('PasswordMustNotBeEmptyErrorFaild')
     ############ Email not registeresd before
     EmailBox = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextEmailLogin"]')
@@ -84,8 +78,10 @@ def LoginEmail(driver):
 
     if EmailNotRegistered:
         print("This email has not been registered before is : pass ✅ ")
+        watchlog_instance.increment('TheEmailNotRegisteredPass')
     else:
         print("This email has not been registered before is : Failed ❌")
+        watchlog_instance.increment('TheEmailNotRegisteredFailed')
 
 
 
@@ -101,8 +97,10 @@ def LoginEmail(driver):
                     value='//*[contains(@text, "Password must be at least 8 characters")]')
     if PasswordUnder8Characters:
         print("Password under 8 is : Pass ✅")
+        watchlog_instance.increment('PasswordUnder8Pass')
     else:
         print("Password under 8 is : Failed ❌")
+        watchlog_instance.increment('PasswordUnder8Failed')
 
     ############ email format True and password incorrect
     EmailBox = driver.find_element(by=AppiumBy.XPATH,
@@ -116,8 +114,11 @@ def LoginEmail(driver):
                     value='//*[contains(@text, "Password is incorrect")]')
     if PasswordIncorrect:
         print("Password is incorrect is : Pass ✅")
+        watchlog_instance.increment('PasswordIncorrectPass')
     else:
         print("Password is incorrect is : Failed ❌")
+        watchlog_instance.increment('PasswordIncorrectFailed')
+        
 
     ############ email format and password True  
     EmailBox = driver.find_element(by=AppiumBy.XPATH,
@@ -127,7 +128,7 @@ def LoginEmail(driver):
     Password.send_keys("11111111")
     LoginButton.click()
     driver.implicitly_wait(10)
-
+    # watchlog_instance.increment('LoginEmail')
     # HomePage = driver.find_element(by=AppiumBy.XPATH,
     #                 value='//android.widget.LinearLayout[@content-desc="Member"]')
     # if HomePage:

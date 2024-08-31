@@ -5,8 +5,9 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 import sys, time
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
  
 def BuyCoin(driver):
@@ -37,7 +38,9 @@ def BuyCoin(driver):
 
     SeccessfulPaymentForCoin = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Congratulations"]')
+     
     if SeccessfulPaymentForCoin : 
+        watchlog_instance.increment('BuyCoin')
         print("purchase 5000 coins is :  pass ✅ ")
         OkButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="OK"]')
@@ -45,6 +48,8 @@ def BuyCoin(driver):
         HomeTab = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@resource-id="gram.members.android:id/navigation_bar_item_small_label_view" and @text="Home"]')
         HomeTab.click()
+        
     else:
         print("purchase 5000 coins is : Failed ❌")
+        watchlog_instance.increment('BuyCoinFail')
     

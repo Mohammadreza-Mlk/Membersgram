@@ -2,9 +2,8 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 import sys, time, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 
 sys.path.append("../Membersgram")
 from function.ChangeLanguage import Language
@@ -40,11 +39,10 @@ desired_caps: Dict[str, Any] = {
 }
 
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
-touch = TouchAction(driver)
 
 Language(driver)
 time.sleep(1.5)
-Register(driver, touch)
+Register(driver)
 time.sleep(1.5)
 AddAccountFullScreen(driver)
 time.sleep(1.5)
@@ -64,8 +62,9 @@ OrderViewByCoin(driver)
 time.sleep(1.5)
 OrderViewByPurchase(driver)
 time.sleep(1.5)
+BuyCoin(driver)
+
+time.sleep(1.5)
 TransferCoin(driver)
 time.sleep(1.5)
-BuyCoin(driver)
-time.sleep(1.5)
-AddAccount(driver, touch, desired_caps)
+AddAccount(driver, desired_caps, url)

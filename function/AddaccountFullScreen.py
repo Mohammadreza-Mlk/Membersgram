@@ -2,12 +2,12 @@ import sys, time
 sys.path.append("../TelegramAuto")
 
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from function.AddTelegramAccount import AddAccount
-
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 def AddAccountFullScreen(driver):
     time.sleep(2)
@@ -20,6 +20,7 @@ def AddAccountFullScreen(driver):
         closeButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.ImageView[@content-desc="Close"]')
         closeButton.click()
+    watchlog_instance.increment('AddAccountFullScreen')
         # LoginTelegram = driver.find_element(by=AppiumBy.XPATH,
         #             value='//android.widget.Button[@text="Login to Telegram"]')
         # LoginTelegram.click()

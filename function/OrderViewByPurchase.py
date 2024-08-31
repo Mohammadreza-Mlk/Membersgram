@@ -6,14 +6,12 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 import sys, time
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
  
 def OrderViewByPurchase(driver):
 
-    # HomePage = driver.find_element(by=AppiumBy.XPATH,
-    #                 value='(//android.widget.FrameLayout[@resource-id="com.membersgram.android:id/navHostMain"])[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView')
-    # HomePage.click()   
     time.sleep(2)
     
     ViewTab = driver.find_element(by=AppiumBy.XPATH,
@@ -42,8 +40,10 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.TextView[@text="Link must not be empty"]')
     if LinkEmpty:
         print("Link Empty in view one post By Purchase is : pass ✅ ")
+        watchlog_instance.increment('LinkEmptyInViewOnePostByByPurchasePass')
     else:
         print("Link Empty in view one post By Purchase is : Failed ❌")
+        watchlog_instance.increment('LinkEmptyInViewOnePostByPurchaseFailed')
 
     driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
@@ -56,8 +56,10 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.TextView[@text="Format is incorrect"]')
     if FormatError:
         print("Format link incorrect in view one Purchase is : pass ✅ ")
+        watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByPurchasePass')
     else:
         print("Format link incorrect in view one Purchase is : Failed ❌")
+        watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByPurchaseFailed')
 
     PostLink.send_keys("t.me/testpnx1/3")    
     NextButton.click()
@@ -81,13 +83,17 @@ def OrderViewByPurchase(driver):
 
     SeccessfulView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Successful payment"]')
+    watchlog_instance.increment('Order_1_PostViewByPurchase')
     if SeccessfulView:
         print("Order View in view one Purchase is : pass ✅ ")
+        watchlog_instance.increment('OrderViewOnePostByPurchasePass')
+        
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
     else:
         print("Order View in view one Purchase is : Failed ❌")
+        watchlog_instance.increment('OrderViewOnePostByPurchaseFailed')
         
 
 
@@ -119,8 +125,10 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.TextView[@text="Username must not be empty"]')
     if LinkEmpty:
         print("Username Empty in view for 5 Purchase is : pass ✅ ")
+        watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByPurchasePass')
     else:
         print("Username Empty in view for 5 Purchase is : Failed ❌")
+        watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByPurchaseFailed')
 
     driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
@@ -133,8 +141,10 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.TextView[@text="Format is incorrect"]')
     if FormatError:
         print("Format link incorrect in view for 5 Purchase is : pass ✅ ")
+        watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByPurchasePass')
     else:
         print("Format link incorrect in view for 5 Purchase is : Failed ❌")
+        watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByPurchaseFailed')
 
     PostLink.send_keys("t.me/testpnx1")    
     NextButton.click()
@@ -159,8 +169,10 @@ def OrderViewByPurchase(driver):
     driver.implicitly_wait(30)
     SeccessfulView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="Successful payment"]')
+    watchlog_instance.increment('Order_5_PostViewByPurchase')
     if SeccessfulView:
         print("Order View in view for 5 Purchase is : pass ✅ ")
+        watchlog_instance.increment('Order_5_PostViewByPurchasePass')
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()

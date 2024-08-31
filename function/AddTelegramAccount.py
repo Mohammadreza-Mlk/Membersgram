@@ -2,7 +2,6 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 from typing import sys
 sys.path.append("../TelegramAuto")
 from time import sleep
@@ -14,30 +13,30 @@ sys.path.append("../func")
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions import interaction
 from selenium.webdriver.common.actions.pointer_input import PointerInput
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
-appium_server = 'http://localhost:4721'
 def swipe_left(driver):
     start_x = 650
     end_x = 300
     start_y = 400
     end_y = 400
 
-    action = TouchAction(driver)
-    action.press(x=start_x, y=start_y).wait(1000).move_to(x=end_x, y=end_y).release().perform()
+    driver.press(x=start_x, y=start_y).wait(1000).move_to(x=end_x, y=end_y).release().perform()
 
 
-def AddAccount(driver, touch, desired_caps):
+def AddAccount(driver, desired_caps, url):
     print("\033[32m***********  Login an account  *********** .\033[0m")
 
-    driver.implicitly_wait(10) 
+    driver.implicitly_wait(30) 
     CoinTab = driver.find_element(by=AppiumBy.XPATH,
                     value='(//android.widget.ImageView[@resource-id="gram.members.android:id/navigation_bar_item_icon_view"])[2]')
     CoinTab.click()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(30)
     FreeTab =driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.LinearLayout[@content-desc="Free"]')  
     FreeTab.click()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(30)
 
     AddTelegramAccount = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Add Telegram account"]')
@@ -45,16 +44,16 @@ def AddAccount(driver, touch, desired_caps):
     PhoneNumber = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextTelegramLoginPhone"]')
     PhoneNumber.send_keys("6603455472")
-    driver.implicitly_wait(10) 
+    driver.implicitly_wait(30) 
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button')
     NextButton.click()
-    driver.implicitly_wait(10) 
+    driver.implicitly_wait(30) 
     codeInput = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@resource-id="gram.members.android:id/login2CustomTv1"]')
     driver.press_keycode(3)
 
-    driver.implicitly_wait(10) 
+    driver.implicitly_wait(30) 
     Vidogram = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@content-desc="Vidogram"]')
     Vidogram.click()
@@ -78,7 +77,7 @@ def AddAccount(driver, touch, desired_caps):
     x, y = 390, 1130
     driver.tap([(x, y)])
     # copyIcon = touch.tap(x=580, y=170).release().perform()
-    driver.implicitly_wait(10) 
+    driver.implicitly_wait(30) 
     MessageBox = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="Message"]')
     MessageBox.click()
  
@@ -103,7 +102,7 @@ def AddAccount(driver, touch, desired_caps):
     sleep(1)
 
     appium_options = UiAutomator2Options().load_capabilities(desired_caps)
-    driver = webdriver.Remote(appium_server, options=appium_options)
+    driver = webdriver.Remote(url, options=appium_options)
     driver.execute_script('mobile: longClickGesture', {'x': 460, 'y': 1072, 'duration': 1000})
    
 
@@ -141,5 +140,6 @@ def AddAccount(driver, touch, desired_caps):
     driver.implicitly_wait(30)
     FreeCoinAfterAddAccount = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.TextView[@text="🇺🇸 +1 660-345-5472"]')
+    watchlog_instance.increment('AddAccount')
     if FreeCoinAfterAddAccount:
         print("\033[32m***********  Login telegram acount  ✅ *********** .\033[0m")

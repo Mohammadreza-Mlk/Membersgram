@@ -5,9 +5,9 @@ from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
 import sys, time
-
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
 def TransferCoin(driver):
     driver.implicitly_wait(10)
@@ -78,9 +78,11 @@ def TransferCoin(driver):
     CoinsRangeForTransfer = driver.find_element(by=AppiumBy.XPATH,
                     value='//*[contains(@text, "coins must be between 10 and 10000")]')
     if CoinsRangeForTransfer:
-        print("coins Over Range for transfer is : pass ✅ ")
+        print("Coins Over Range for transfer is : pass ✅ ")
+        watchlog_instance.increment('CoinsOverRangeforTransferPass')
     else:
         print("coins Over Range for transfer is : Failed ❌")
+        watchlog_instance.increment('CoinsOverRangeforTransferFailed')
 
     # Seccessful
     driver.implicitly_wait(10)
@@ -100,8 +102,11 @@ def TransferCoin(driver):
                     value='//android.widget.Button[@text="OK"]')
         okButton.click()
         print("coins Range for transfer is : pass ✅ ")
+        watchlog_instance.increment('transferCoinPass')
     else:
         print("coins Range for transfer is : Failed ❌")
+        watchlog_instance.increment('transferCoinPass')
+    
     HomePage = driver.find_element(by=AppiumBy.XPATH,
                     value='(//android.widget.FrameLayout[@resource-id="gram.members.android:id/navigation_bar_item_icon_container"])[1]')
     HomePage.click()
