@@ -28,7 +28,7 @@ def OrderViewByCoin(driver):
                 value='//android.widget.Button[@text="One Post"]')
     Onepost.click()
     view100 = driver.find_element(by=AppiumBy.XPATH,
-                value='//android.widget.TextView[@resource-id="gram.members.android:id/tvViewBundleCount" and @text="100"]')
+                value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[3]')
     view100.click()
 
     driver.implicitly_wait(5)
@@ -100,7 +100,7 @@ def OrderViewByCoin(driver):
                 value='//android.widget.Button[@text="5 Posts"]')
     FivePost.click()
     view100 = driver.find_element(by=AppiumBy.XPATH,
-                value='//android.widget.TextView[@resource-id="gram.members.android:id/tvViewBundleCount" and @text="100"]')
+                value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[3]')
     view100.click()
 
     driver.implicitly_wait(5)

@@ -93,7 +93,7 @@ def AddAccount(driver, desired_caps, url):
     
     sleep(1)
     # پاک کردن اضافه پیام برای نمایان شدن متن کد
-    for m in range(60):
+    for m in range(65):
         # location of mark massage to delete
         driver.long_press_keycode(67)
     sleep(1)   
@@ -114,8 +114,13 @@ def AddAccount(driver, desired_caps, url):
     x, y = 320, 975
     driver.tap([(x, y)])
     # touch.tap(x=370, y=1035).release().perform()
-    
-        
+    x, y = 920, 1378
+    driver.tap([(x, y)])
+    sleep(1)
+    # پاک کردن اضافه پیام برای نمایان شدن متن کد
+    for m in range(90):
+        # location of mark massage to delete
+        driver.long_press_keycode(67)   
     
         # touch.long_press(x=990, y=2042).release().perform()
     driver.press_keycode(4)

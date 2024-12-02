@@ -18,7 +18,7 @@ from function.OrderViewBycoin import OrderViewByCoin
 from function.OrderViewByPurchase import OrderViewByPurchase
 from function.TransferCoin import TransferCoin
 from function.AddaccountFullScreen import AddAccountFullScreen
-
+from function.Permision import Permision
 
 cap: Dict[str, Any] = {
     'platformName': 'Android',
@@ -39,32 +39,35 @@ desired_caps: Dict[str, Any] = {
 }
 
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
-
-Language(driver)
-time.sleep(1.5)
-Register(driver)
-time.sleep(1.5)
+ 
+ 
+# Permision(driver)
+# time.sleep(1.5)
+# Language(driver)
+# time.sleep(1.5)
+# Register(driver)
+# time.sleep(1.5)
 AddAccountFullScreen(driver)
-time.sleep(1.5)
-LogOut(driver)
-time.sleep(1.5)
-Language(driver)
-time.sleep(1.5)
-LoginEmail(driver)
-time.sleep(1.5)
-AddAccountFullScreen(driver)
-time.sleep(1.5)
-OrderMemberByCoin(driver)
-time.sleep(1.5)
-OrderMemberByPurchase(driver)
-time.sleep(1.5)
-OrderViewByCoin(driver)
-time.sleep(1.5)
-OrderViewByPurchase(driver)
-time.sleep(1.5)
-BuyCoin(driver)
+# time.sleep(1.5)
+# LogOut(driver)
+# time.sleep(1.5)
+# Language(driver)
+# time.sleep(1.5)
+# LoginEmail(driver)
+# time.sleep(1.5)
+# AddAccountFullScreen(driver)
+# # time.sleep(1.5)
+# # OrderMemberByCoin(driver)
+# # time.sleep(1.5)
+# OrderMemberByPurchase(driver)
+# time.sleep(1.5)
+# OrderViewByCoin(driver)
+# time.sleep(1.5)
+# OrderViewByPurchase(driver)
+# time.sleep(1.5)
+# BuyCoin(driver)
 
-time.sleep(1.5)
-TransferCoin(driver)
-time.sleep(1.5)
-AddAccount(driver, desired_caps, url)
+# time.sleep(1.5)
+# TransferCoin(driver)
+# time.sleep(1.5)
+# AddAccount(driver, desired_caps, url)

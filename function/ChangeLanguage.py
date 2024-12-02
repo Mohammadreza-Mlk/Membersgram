@@ -17,6 +17,7 @@ def Language(driver):
         English = driver.find_element(by=AppiumBy.XPATH,
                                         value='//android.widget.RadioButton[@resource-id="gram.members.android:id/englishButton"]')
         English.click()
+        print("metric")
         watchlog_instance.increment('Change_Language')
     except:
             print("language is English")

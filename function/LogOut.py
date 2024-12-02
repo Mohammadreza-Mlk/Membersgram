@@ -9,7 +9,7 @@ watchlog_instance = Watchlog()
 def LogOut(driver):
     driver.implicitly_wait(15)
     ProfileTab = driver.find_element(by=AppiumBy.XPATH,
-                    value='(//android.widget.FrameLayout[@resource-id="gram.members.android:id/navigation_bar_item_icon_container"])[4]')
+                    value='//android.widget.TextView[@resource-id="gram.members.android:id/navigation_bar_item_small_label_view" and @text="Profile"]')
     ProfileTab.click()
     driver.implicitly_wait(15)
     LogOutInProfile = driver.find_element(by=AppiumBy.XPATH,
@@ -22,4 +22,8 @@ def LogOut(driver):
     ConfirmLogOut = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Logout"]')
     ConfirmLogOut.click()
+    # time.sleep(2)
+    # print("metric")
     watchlog_instance.increment('LogOut')
+    # time.sleep(2)
+    # print("metric")
