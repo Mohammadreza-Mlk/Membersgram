@@ -46,8 +46,12 @@ def OrderMemberByCoin(driver):
             time.sleep(2)
             BuyCoin(driver)
             driver.implicitly_wait(30)
+            HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+            HomeTab.click()
+            driver.implicitly_wait(30)
             Order50MemberByCoin = driver.find_element(by=AppiumBy.XPATH,
-                        value='//android.widget.GridView[@content-desc="Member bundles list"]/android.view.ViewGroup[3]')
+                        value='//android.widget.TextView[@text="50"]')
             Order50MemberByCoin.click()
     except:
         print("coins enough")

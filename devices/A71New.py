@@ -4,7 +4,6 @@ from appium.options.common import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
 import sys, time, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
-
 sys.path.append("../Membersgram")
 from function.ChangeLanguage import Language
 from function.Register import Register
@@ -17,6 +16,7 @@ from function.OrderMemberByPurchase import OrderMemberByPurchase
 from function.OrderViewBycoin import OrderViewByCoin
 from function.OrderViewByPurchase import OrderViewByPurchase
 from function.TransferCoin import TransferCoin
+from function.CloseAddAccountFullScreeen import CloseAddAccountFullScreeen
 from function.AddaccountFullScreen import AddAccountFullScreen
 from function.Permision import Permision
 
@@ -42,12 +42,12 @@ driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
  
  
 # Permision(driver)
-# time.sleep(1.5)
+# time.sleep(0.5)
 # Language(driver)
-# time.sleep(1.5)
+# time.sleep(0.5)
 # Register(driver)
-# time.sleep(1.5)
-AddAccountFullScreen(driver)
+# time.sleep(0.5)
+# CloseAddAccountFullScreeen(driver)
 # time.sleep(1.5)
 # LogOut(driver)
 # time.sleep(1.5)
@@ -56,18 +56,18 @@ AddAccountFullScreen(driver)
 # LoginEmail(driver)
 # time.sleep(1.5)
 # AddAccountFullScreen(driver)
-# # time.sleep(1.5)
-# # OrderMemberByCoin(driver)
+# time.sleep(1.5)
+TransferCoin(driver)
+time.sleep(1.5)
+OrderMemberByCoin(driver)
 # # time.sleep(1.5)
 # OrderMemberByPurchase(driver)
 # time.sleep(1.5)
 # OrderViewByCoin(driver)
 # time.sleep(1.5)
 # OrderViewByPurchase(driver)
-# time.sleep(1.5)
-# BuyCoin(driver)
 
-# time.sleep(1.5)
-# TransferCoin(driver)
+
+
 # time.sleep(1.5)
 # AddAccount(driver, desired_caps, url)
