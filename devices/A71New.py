@@ -19,6 +19,7 @@ from function.TransferCoin import TransferCoin
 from function.CloseAddAccountFullScreeen import CloseAddAccountFullScreeen
 from function.AddaccountFullScreen import AddAccountFullScreen
 from function.Permision import Permision
+from function.sitecustomize import shot
 
 cap: Dict[str, Any] = {
     'platformName': 'Android',
@@ -57,17 +58,14 @@ driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 # time.sleep(1.5)
 # AddAccountFullScreen(driver)
 # time.sleep(1.5)
-TransferCoin(driver)
-time.sleep(1.5)
-OrderMemberByCoin(driver)
-# # time.sleep(1.5)
+# TransferCoin(driver)
+# time.sleep(1.5)
+# OrderMemberByCoin(driver)
+# time.sleep(1.5)
 # OrderMemberByPurchase(driver)
 # time.sleep(1.5)
-# OrderViewByCoin(driver)
-# time.sleep(1.5)
-# OrderViewByPurchase(driver)
-
-
-
-# time.sleep(1.5)
-# AddAccount(driver, desired_caps, url)
+OrderViewByCoin(driver)
+time.sleep(1.5)
+OrderViewByPurchase(driver)
+time.sleep(1.5)
+AddAccount(driver, desired_caps, url)

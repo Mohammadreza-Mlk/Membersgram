@@ -1,26 +1,175 @@
+from appium import webdriver
+from typing import Any, Dict
+from appium.options.android import UiAutomator2Options
+from appium.webdriver.common.appiumby import AppiumBy
+from typing import sys
+sys.path.append("../TelegramAuto")
+from time import sleep
+from datetime import datetime 
+import sys, time, os, base64
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import subprocess, sys, os,time
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
-sys.path.append("../Membersgram")
- 
-javascript_file = 'api.js'
+sys.path.append("../func")
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.actions import interaction
+from selenium.webdriver.common.actions.pointer_input import PointerInput
+from watchlog import Watchlog
+watchlog_instance = Watchlog()
 
-# اجرای فایل جاوا اسکریپت
-result = subprocess.run(['node', javascript_file], capture_output=True, text=True)
+def swipe_left(driver):
+    start_x = 650
+    end_x = 300
+    start_y = 400
+    end_y = 400
 
-# نمایش خروجی
-myCoins1 = result.stdout
-print("Output:", myCoins1 )
- 
-time.sleep(10)
+    driver.press(x=start_x, y=start_y).wait(1000).move_to(x=end_x, y=end_y).release().perform()
 
 
-# اجرای فایل جاوا اسکریپت
-result = subprocess.run(['node', javascript_file], capture_output=True, text=True)
+def AddAccount(driver, desired_caps, url):
+    print("\033[32m***********  Login an account  *********** .\033[0m")
 
-# نمایش خروجی
-myCoins2 = result.stdout
-print("Output:", myCoins2 )
-if myCoins2 > myCoins1:
-    print("PASS")
- 
+    driver.implicitly_wait(30) 
+    CoinTab = driver.find_element(by=AppiumBy.XPATH,
+                    value='(//android.widget.ImageView[@resource-id="gram.members.android:id/navigation_bar_item_icon_view"])[2]')
+    CoinTab.click()
+    driver.implicitly_wait(30)
+    FreeTab =driver.find_element(by=AppiumBy.XPATH,
+                    value='//android.widget.LinearLayout[@content-desc="Free"]')  
+    FreeTab.click()
+    driver.implicitly_wait(30)
+
+    AddTelegramAccount = driver.find_element(by=AppiumBy.XPATH,
+                    value='//android.widget.Button[@text="Add Account"]')
+    AddTelegramAccount.click()
+    PhoneNumber = driver.find_element(by=AppiumBy.XPATH,
+                    value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextTelegramLoginPhone"]')
+    PhoneNumber.send_keys("7066819795")
+    for addaccount in range(4):
+        driver.implicitly_wait(30) 
+        NextButton = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.Button')
+        NextButton.click()
+        driver.implicitly_wait(30) 
+        codeInput = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.TextView[@resource-id="gram.members.android:id/login2CustomTv1"]')
+        if codeInput:
+            
+            # استاپ کردن اسکرین رکورد از قبل 
+            video_folder = "video/bugsmedia"   
+            if not os.path.exists(video_folder):
+                os.makedirs(video_folder)   
+            # تولید نام فایل با زمان فعلی
+            current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")  # فرمت زمان
+            video_path = os.path.join(video_folder, f"recorded_video_{current_time}.mp4")
+
+            print("توقف ضبط صفحه...")
+            raw_video = driver.stop_recording_screen()
+
+            # ذخیره ویدئو در فایل مشخص‌شده
+            with open(video_path, "wb") as video_file:
+                video_file.write(base64.b64decode(raw_video))
+
+            print(f"ویدئو ضبط‌شده در مسیر ذخیره شد: {video_path}")
+            
+            
+            driver.press_keycode(3)
+
+            driver.implicitly_wait(30) 
+            AkaApp = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.TextView[@content-desc="aka"]')
+            AkaApp.click()
+            sleep(5)
+            searchIcon = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.ImageButton[@content-desc="Search"]/android.widget.ImageView')
+            searchIcon.click()
+            searchInput = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.EditText[@text="Search"]')
+            searchInput.send_keys("Telegram")
+            sleep(5) 
+            x, y = 300, 500
+            driver.tap([(x, y)])
+            sleep(5)
+            # touch.tap(x=300, y=500).release().perform()
+            x, y = 500, 1850
+            driver.tap([(x, y)])
+
+            # touch.long_press(x=500, y=1850).release().perform()
+            time.sleep(1.5)
+            x, y = 390, 1493
+            driver.tap([(x, y)])
+            # copyIcon = touch.tap(x=580, y=170).release().perform()
+            driver.implicitly_wait(30) 
+            MessageBox = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="Message"]')
+            MessageBox.click()
+        
+            
+            x, y = 244, 1355
+            driver.tap([(x, y)])
+            # driver.long_press(MessageBox)
+            # touch.long_press(MessageBox).release().perform()
+            x, y = 150, 1240
+            driver.tap([(x, y)])
+            # touch.tap(x=150, y=1240).release().perform()
+
+            
+            sleep(1)
+            # پاک کردن اضافه پیام برای نمایان شدن متن کد
+            for m in range(65):
+                # location of mark massage to delete
+                driver.long_press_keycode(67)
+            sleep(1)   
+            x, y = 460, 1070
+            driver.tap([(x, y)])
+            sleep(1)
+
+            appium_options = UiAutomator2Options().load_capabilities(desired_caps)
+            driver = webdriver.Remote(url, options=appium_options)
+            driver.execute_script('mobile: longClickGesture', {'x': 460, 'y': 1072, 'duration': 1000})
+        
+
+
+
+
+            # touch.long_press(x=440, y=1148).release().perform()
+            sleep(1)
+            x, y = 320, 975
+            driver.tap([(x, y)])
+            # touch.tap(x=370, y=1035).release().perform()
+            x, y = 920, 1378
+            driver.tap([(x, y)])
+            sleep(1)
+            # پاک کردن اضافه پیام برای نمایان شدن متن کد
+            for m in range(90):
+                # location of mark massage to delete
+                driver.long_press_keycode(67)   
+            
+                # touch.long_press(x=990, y=2042).release().perform()
+            driver.press_keycode(4)
+            driver.press_keycode(4)
+            driver.press_keycode(3)
+            driver.implicitly_wait(5)
+            MembersgramApp = driver.find_element(by=AppiumBy.XPATH,
+                            value='(//android.widget.TextView[@content-desc="Membersgram"])[1]')
+            MembersgramApp.click()
+            time.sleep(2)
+            x, y = 484, 1468
+            driver.tap([(x, y)])
+            # touch.tap(x=484, y=1468).release().perform()
+            driver.implicitly_wait(3)
+            NextButton = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.Button')
+            NextButton.click()
+            driver.implicitly_wait(15)
+            StartBot = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.Button[@text="Start"]')
+            StartBot.click()
+            driver.implicitly_wait(30)
+            FreeCoinAfterAddAccount = driver.find_element(by=AppiumBy.XPATH,
+                            value='//android.widget.TextView[@text="🇺🇸 +1 660-345-5472"]')
+            watchlog_instance.increment('AddAccount')
+            if FreeCoinAfterAddAccount:
+                print("\033[32m***********  Login telegram acount  ✅ *********** .\033[0m")
+            break
+        else:
+            print("شروع ضبط صفحه...")
+            driver.start_recording_screen()

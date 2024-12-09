@@ -104,10 +104,10 @@ def OrderMemberByPurchase(driver):
                             value='//android.widget.Button[@text="Pay"]')
     PayButton.click()
    
-    driver.implicitly_wait(30)
-    AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
-        value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
-    AgreeButtonInGoogleButtomsheet.click()
+    # driver.implicitly_wait(30)
+    # AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
+    #     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
+    # AgreeButtonInGoogleButtomsheet.click()
     driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
@@ -280,10 +280,10 @@ def OrderMemberByPurchase(driver):
             PayButton.click()
             driver.implicitly_wait(30)
             
-            AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
-                value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
-            AgreeButtonInGoogleButtomsheet.click()
-            driver.implicitly_wait(30)
+            # AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
+            #     value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
+            # AgreeButtonInGoogleButtomsheet.click()
+            # driver.implicitly_wait(30)
 
             OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
                             value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
@@ -308,5 +308,4 @@ def OrderMemberByPurchase(driver):
                     print("Too Many Order For Channel In Memeber Nigeria via purchase is : Failed ❌")
                     watchlog_instance.increment('TooManyOrderForChannelByPurchaseFailed')
         # else:
-        #     driver.quit()
         

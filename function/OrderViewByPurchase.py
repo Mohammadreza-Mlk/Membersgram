@@ -68,12 +68,12 @@ def OrderViewByPurchase(driver):
     PayInButtomshit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Pay"]')
     PayInButtomshit.click()
-    driver.implicitly_wait(30)
+    # driver.implicitly_wait(30)
 
 
-    AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
-                    value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
-    AgreeButtonInGoogleButtomsheet.click()
+    # AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
+    #                 value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
+    # AgreeButtonInGoogleButtomsheet.click()
     driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
