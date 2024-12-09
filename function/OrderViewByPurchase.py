@@ -13,7 +13,10 @@ watchlog_instance = Watchlog()
 def OrderViewByPurchase(driver):
 
     time.sleep(2)
-    
+    HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+    HomeTab.click()
+    driver.implicitly_wait(10)
     ViewTab = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.TextView[@text="View"]')
     
@@ -23,13 +26,13 @@ def OrderViewByPurchase(driver):
                 value='//android.widget.Button[@text="One Post"]')
     Onepost.click()
     driver.implicitly_wait(30)
-    view1000 = driver.find_element(by=AppiumBy.XPATH,
+    view200 = driver.find_element(by=AppiumBy.XPATH,
                 value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[1]')
-    view1000.click()
+    view200.click()
 
     driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
-                value='//android.widget.TextView[@text="Please enter the link to the desired post"]')
+                value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
 
 
     NextButton = driver.find_element(by=AppiumBy.XPATH,
@@ -91,6 +94,10 @@ def OrderViewByPurchase(driver):
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
+        driver.implicitly_wait(5)
+        HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+        HomeTab.click()
     else:
         print("Order View in view one Purchase is : Failed ❌")
         watchlog_instance.increment('OrderViewOnePostByPurchaseFailed')
@@ -108,9 +115,9 @@ def OrderViewByPurchase(driver):
     FivePost = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="5 Posts"]')
     FivePost.click()
-    view1000 = driver.find_element(by=AppiumBy.XPATH,
+    view200 = driver.find_element(by=AppiumBy.XPATH,
                 value='//androidx.recyclerview.widget.RecyclerView[@content-desc="View bundles list"]/android.view.ViewGroup[1]')
-    view1000.click()
+    view200.click()
 
     driver.implicitly_wait(30)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
@@ -156,11 +163,11 @@ def OrderViewByPurchase(driver):
     PayInButtomshit = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Pay"]')
     PayInButtomshit.click()
-    driver.implicitly_wait(30)
+    # driver.implicitly_wait(30)
 
-    AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
-                    value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
-    AgreeButtonInGoogleButtomsheet.click()
+    # AgreeButtonInGoogleButtomsheet = driver.find_element(by=AppiumBy.XPATH,
+    #                 value='//android.widget.Button[@resource-id="com.android.vending:id/0_resource_name_obfuscated"]')
+    # AgreeButtonInGoogleButtomsheet.click()
     driver.implicitly_wait(30)
 
     OneTapBuy = driver.find_element(by=AppiumBy.XPATH,
@@ -176,6 +183,10 @@ def OrderViewByPurchase(driver):
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
+        driver.implicitly_wait(10)
+        HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+        HomeTab.click()
     else:
         print("Order View in view for 5 Purchase is : Failed ❌")
         

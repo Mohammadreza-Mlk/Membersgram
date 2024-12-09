@@ -139,6 +139,9 @@ def OrderMemberByCoin(driver):
             watchlog_instance.increment('OrderMemberByCoinFalse')
     
         time.sleep(2)
+        HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+        HomeTab.click()
     
     
     #           
@@ -206,3 +209,6 @@ def OrderMemberByCoin(driver):
         GotItButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Got it"]')
         GotItButton.click()
+        HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+        HomeTab.click()

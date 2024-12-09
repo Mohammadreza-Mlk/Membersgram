@@ -122,6 +122,9 @@ def OrderMemberByPurchase(driver):
         GotItButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Got it"]')
         GotItButton.click()
+        HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+        HomeTab.click()
         if GotItButton:
             print("Order Member By Purchase is : pass ✅")
             watchlog_instance.increment('OrderMemberByPurchasePass')
@@ -296,6 +299,9 @@ def OrderMemberByPurchase(driver):
                 GotItButton = driver.find_element(by=AppiumBy.XPATH,
                                 value='//android.widget.Button[@text="Got it"]')
                 GotItButton.click()
+                HomeTab = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.FrameLayout[@content-desc="Home"]')
+                HomeTab.click()
                 if GotItButton:
                     time.sleep(4)
                     print("Nigeria Member Order By Purchase is : pass ✅")
