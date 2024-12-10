@@ -82,6 +82,10 @@ def OrderViewByCoin(driver):
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
+        driver.implicitly_wait(5)
+        HomePage = driver.find_element(by=AppiumBy.XPATH,
+                value='(//android.widget.ImageView[@resource-id="gram.members.android:id/navigation_bar_item_icon_view"])[1]')
+        HomePage.click()
     else:
         print("Order View in view one post is : Failed ❌")
         watchlog_instance.increment('OrderViewOnePostByCoinFailed')
@@ -156,6 +160,10 @@ def OrderViewByCoin(driver):
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
+        driver.implicitly_wait(5)
+        HomePage = driver.find_element(by=AppiumBy.XPATH,
+                value='(//android.widget.ImageView[@resource-id="gram.members.android:id/navigation_bar_item_icon_view"])[1]')
+        HomePage.click()
     else:
         print("Order View in view for 5 post is : Failed ❌")
         
