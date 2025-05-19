@@ -5,30 +5,39 @@ from function.AddaccountFullScreen import AddAccountFullScreen
 from datetime import datetime
 from watchlog import Watchlog
 watchlog_instance = Watchlog()
+from function.result import log_test_result
 
 def Register(driver):
-    
     driver.implicitly_wait(30)
-    RegisterButton = driver.find_element(by=AppiumBy.XPATH,
-                                                        value='//android.widget.Button[@text="Register"]')
-    RegisterButton.click()
+    SkipButton = driver.find_element(by=AppiumBy.XPATH,
+                                                        value='//android.widget.Button[@text="Skip"]')
+    SkipButton.click()
     
     driver.implicitly_wait(30)
     ################# Email is Empty 
+    EmailButton = driver.find_element(by=AppiumBy.XPATH,
+                                    value='//android.widget.Button[@resource-id="gram.members.android:id/bRegister"]')
+    EmailButton.click()
+    driver.implicitly_wait(30)
+    
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                                     value='//android.widget.Button[@text="Next"]')
+    
+    
     NextButton.click()
     driver.implicitly_wait(30)
     ErrorEmailEmpty = driver.find_element(by=AppiumBy.XPATH,
                 value='//*[contains(@text, "Email must not be empty")]')
     if ErrorEmailEmpty:
         print("Email Empty Error is : pass ✅")
-        watchlog_instance.increment('EmailEmptyErrorPass')
+        log_test_result("empty email in register", "pass")
     else:
         print("Email Empty Error is : Failed ❌")
-        watchlog_instance.increment('EmailEmptyErrorFailed')
+        log_test_result("empty email in register", "failed")
+        # watchlog_instance.increment('EmailEmptyErrorFailed')
         
     ################# Email format is Incorrect
+    
     EmailInput = driver.find_element(by=AppiumBy.XPATH,
                                     value='//android.widget.EditText[@text="Email"]')
     EmailInput.send_keys("test")
@@ -42,10 +51,13 @@ def Register(driver):
 
     if ErrorEmail:
         print("Email format Incorrect is : pass ✅ ")
-        watchlog_instance.increment('EmailFormatIncorrectPass')
+        log_test_result("format email in register", "pass")
+        # watchlog_instance.increment('EmailFormatIncorrectPass')
     else:
         print("Email format Incorrect is : Failed ❌")
-        watchlog_instance.increment('EmailFormatIncorrectFsiled')
+        log_test_result("format email in register", "failed")
+        # watchlog_instance.increment('EmailFormatIncorrectFsiled')
+        
     ################# Email registerd Before
     
     EmailInput.send_keys("testphoenixmlk@gmail.com")
@@ -64,12 +76,14 @@ def Register(driver):
                                     value='//android.widget.Button[@text="Cancel"]')
         CancelEmail.click()
         print("Email is already registered  pass ✅")
-        watchlog_instance.increment('EmailIsAlreadyRegisteredPass')
+        log_test_result("Email registered before", "pass")
+        # watchlog_instance.increment('EmailIsAlreadyRegisteredPass')
         driver.implicitly_wait(30)
     
     else :
         print("Email is already registered is : Failed ❌")
-        watchlog_instance.increment('EmailIsAlreadyRegisteredfailed')
+        log_test_result("Email registered before", "failed")
+        # watchlog_instance.increment('EmailIsAlreadyRegisteredfailed')
     ################# Email format true
     
     # دریافت زمان فعلی
@@ -85,10 +99,10 @@ def Register(driver):
                                     value='//android.widget.EditText[@text="Password"]')
     if PasswordBox : 
         print("Email format True is : pass ✅ ")
-        watchlog_instance.increment('EmailFormatTruePass')
+        # watchlog_instance.increment('EmailFormatTruePass')
     else:
         print("Email format True is : Failed ❌")
-        watchlog_instance.increment('EmailFormatTrueFailed')
+        # watchlog_instance.increment('EmailFormatTrueFailed')
      
     ################# Email true & Password Emtpy
     time.sleep(2)
@@ -107,10 +121,10 @@ def Register(driver):
     driver.implicitly_wait(30)
     if EmptyPassword:
         print("Password Empty is : pass ✅ ")
-        watchlog_instance.increment('PasswordEmptyErrorPass')
+        # watchlog_instance.increment('PasswordEmptyErrorPass')
     else:
         print("Password Empty is : Failed ❌")
-        watchlog_instance.increment('PasswordEmptyErrorPass')
+        # watchlog_instance.increment('PasswordEmptyErrorPass')
     
     driver.implicitly_wait(30)
 
@@ -124,10 +138,10 @@ def Register(driver):
                 value='//*[contains(@text, "Password must be at least 8 characters")]')
     if PasswordUnder8Characters:
         print("Password under 8 is : Pass ✅")
-        watchlog_instance.increment('PasswordUnder_8_Pass')
+        # watchlog_instance.increment('PasswordUnder_8_Pass')
     else:
         print("Password under 8 is : Failed ❌")
-        watchlog_instance.increment('PasswordUnder_8_Failed')
+        # watchlog_instance.increment('PasswordUnder_8_Failed')
 
     ################# Email true & Password ok And confirm Pass is Empty
     
@@ -138,10 +152,10 @@ def Register(driver):
     driver.implicitly_wait(30)
     if EmptyPassword:
         print("confirm Password Empty is : pass ✅ ")
-        watchlog_instance.increment('ConfirmPasswordEmptyPass')
+        # watchlog_instance.increment('ConfirmPasswordEmptyPass')
     else:
         print("confirm Password Empty is : Failed ❌")
-        watchlog_instance.increment('ConfirmPasswordEmptyFailed')
+        # watchlog_instance.increment('ConfirmPasswordEmptyFailed')
         
     
     ################# Email true & Password ok And confirm Pass under 8 
@@ -154,10 +168,10 @@ def Register(driver):
                                 value='//*[contains(@text, "Password must be at least 8 characters")]')
     if PasswordUnder8Character:
      print("confirm Password under 8 is : Pass ✅")
-     watchlog_instance.increment('ConfirmPasswordUnder_8_Pass')
+    #  watchlog_instance.increment('ConfirmPasswordUnder_8_Pass')
     else:
         print("confirm Password under 8 is : Failed ❌")
-        watchlog_instance.increment('ConfirmPasswordUnder_8_Failed')
+        # watchlog_instance.increment('ConfirmPasswordUnder_8_Failed')
         
     ################# Email true & Password ok And confirm do not match
     
@@ -171,14 +185,15 @@ def Register(driver):
     
     if PasswordDoNotMatch:
         print("Password Do Not Match is : Pass ✅")
-        watchlog_instance.increment('PasswordDoNotMatchPass')
+        # watchlog_instance.increment('PasswordDoNotMatchPass')
     else:
         print("Password Do Not Match is : Failed ❌")
-        watchlog_instance.increment('PasswordDoNotMatchFailed')
+        # watchlog_instance.increment('PasswordDoNotMatchFailed')
     ################# Email true & Password And confirm ok 
     
     ConfirmPassword.send_keys("11111111")
     Register_Button.click()
+    log_test_result("Register", "pass")
     driver.implicitly_wait(30)
     
     try:
@@ -202,7 +217,7 @@ def Register(driver):
             NextButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Next"]')
             NextButton.click()
-        watchlog_instance.increment('Register')
+        # watchlog_instance.increment('Register')
     except:
         print("")
     # driver.implicitly_wait(10)

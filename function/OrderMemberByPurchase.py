@@ -9,6 +9,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 import sys, time
 from watchlog import Watchlog
 watchlog_instance = Watchlog()
+from function.result import log_test_result
+
+
 def OrderMemberByPurchase(driver):
 
 # HomePage = driver.find_element(by=AppiumBy.XPATH,
@@ -22,11 +25,11 @@ def OrderMemberByPurchase(driver):
             RetryButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Retry"]')
             print("Package Member is : Somthing went wrong ❌")
-            watchlog_instance.increment('LoadPackageMemberByPurchaseFailed')
+            # watchlog_instance.increment('LoadPackageMemberByPurchaseFailed')
             RetryButton.click()
         else:
             print("Package Member is : Ok ✅")
-            watchlog_instance.increment('LoadPackageMemberByPurchasePass')
+            # watchlog_instance.increment('LoadPackageMemberByPurchasePass')
     except:
         print("Package loaded")
 
@@ -67,10 +70,10 @@ def OrderMemberByPurchase(driver):
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
         print("Empty Id Error via purchase is : pass ✅")
-        watchlog_instance.increment('EmptyIdErrorByPurchasePass')
+        # watchlog_instance.increment('EmptyIdErrorByPurchasePass')
     else:
         print("Empty Id Error via purchase is : Failed ❌")
-        watchlog_instance.increment('EmptyIdErrorByPurchaseFailed')
+        # watchlog_instance.increment('EmptyIdErrorByPurchaseFailed')
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("1111")
@@ -82,10 +85,10 @@ def OrderMemberByPurchase(driver):
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
         print("Format Id incorrect Error via purchase is : pass ✅")
-        watchlog_instance.increment('FormatIdIncorrectErrorByPurchasePass')
+        # watchlog_instance.increment('FormatIdIncorrectErrorByPurchasePass')
     else:
         print("Format Id incorrect Error via purchase is : Failed ❌")
-        watchlog_instance.increment('FormatIdIncorrectErrorByPurchaseFailed')
+        # watchlog_instance.increment('FormatIdIncorrectErrorByPurchaseFailed')
     UsernameInput.send_keys("testpnx3")
     time.sleep(1)
     NextButton = driver.find_element(by=AppiumBy.XPATH,
@@ -127,11 +130,13 @@ def OrderMemberByPurchase(driver):
         HomeTab.click()
         if GotItButton:
             print("Order Member By Purchase is : pass ✅")
-            watchlog_instance.increment('OrderMemberByPurchasePass')
+            log_test_result("purchase member", "pass")
+            # watchlog_instance.increment('OrderMemberByPurchasePass')
              
         else:
             print("Order Member By Purchase is : Failed ❌")
-            watchlog_instance.increment('OrderMemberByPurchaseFailed')
+            log_test_result("purchase member", "failed")
+            # watchlog_instance.increment('OrderMemberByPurchaseFailed')
                 
                 #####################################
                 #####################################
@@ -197,7 +202,7 @@ def OrderMemberByPurchase(driver):
     #         print("")
     #     if TooManyOrderForChannel:
     #             print("Too Many Order For Channel via purchase is : pass ✅")
-    #             watchlog_instance.increment('TooManyOrderForChannelByPurchasePass')
+                # watchlog_instance.increment('TooManyOrderForChannelByPurchasePass')
     #             OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
     #                         value='//android.widget.Button[@text="OK"]')
     #             OkForTooManyChannel.click()
@@ -208,7 +213,7 @@ def OrderMemberByPurchase(driver):
     #             time.sleep(2)
     #     else:
     #             print("Too Many Order For Channel via purchase is : Failed ❌")
-    #             watchlog_instance.increment('TooManyOrderForChannelByPurchaseFiled')
+                # watchlog_instance.increment('TooManyOrderForChannelByPurchaseFiled')
     #             driver.implicitly_wait(30) 
                         
                     
@@ -232,10 +237,10 @@ def OrderMemberByPurchase(driver):
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
         print("Empty Id In country order via purchase Error is : pass ✅")
-        watchlog_instance.increment('EmptyIdIncorrectInCountryOrderErrorByPurchasePass')
+        # watchlog_instance.increment('EmptyIdIncorrectInCountryOrderErrorByPurchasePass')
     else:
         print("Empty Id  In country order via purchase Error is : Failed ❌")
-        watchlog_instance.increment('EmptyIdIncorrectInCountryOrderErrorByPurchaseFiled')
+        # watchlog_instance.increment('EmptyIdIncorrectInCountryOrderErrorByPurchaseFiled')
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("1111")
@@ -247,10 +252,10 @@ def OrderMemberByPurchase(driver):
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
         print("Format Id incorrect In country order Error via purchase is : pass ✅")
-        watchlog_instance.increment('FormatIdIncorrectInCountryOrderErrorByPurchasePass')
+        # watchlog_instance.increment('FormatIdIncorrectInCountryOrderErrorByPurchasePass')
     else:
         print("Format Id incorrect In country order Error via purchase is : Failed ❌")
-        watchlog_instance.increment('FormatIdIncorrectInCountryOrderErrorByPurchaseFiled')
+        # watchlog_instance.increment('FormatIdIncorrectInCountryOrderErrorByPurchaseFiled')
         
      
     UsernameInput.send_keys("testpnx3")
@@ -261,7 +266,7 @@ def OrderMemberByPurchase(driver):
                         value='//android.widget.TextView[@text="Too many orders in progress"]')
     if TooManyOrderForChannel:
             print("Too Many Order For Channel in country order via purchase is : pass ✅")
-            watchlog_instance.increment('TooManyOrderForChannelByPurchasePass')
+            # watchlog_instance.increment('TooManyOrderForChannelByPurchasePass')
             
             OkForTooManyChannel = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="OK"]')
@@ -305,13 +310,14 @@ def OrderMemberByPurchase(driver):
                 if GotItButton:
                     time.sleep(4)
                     print("Nigeria Member Order By Purchase is : pass ✅")
-                    watchlog_instance.increment('OrderCountryMemberByPurchasePass')
+                    log_test_result("purchase country member", "pass")
+                    # watchlog_instance.increment('OrderCountryMemberByPurchasePass')
                 else:
                     print("Nigeria Member Order By Purchase is : Failed ❌")
-                    watchlog_instance.increment('OrderCountryMemberByPurchaseFailed')
+                    log_test_result("purchase country member", "failed")
+                    # watchlog_instance.increment('OrderCountryMemberByPurchaseFailed')
                    
             else:
                     print("Too Many Order For Channel In Memeber Nigeria via purchase is : Failed ❌")
-                    watchlog_instance.increment('TooManyOrderForChannelByPurchaseFailed')
-        # else:
-        
+                    # watchlog_instance.increment('TooManyOrderForChannelByPurchaseFailed')
+         

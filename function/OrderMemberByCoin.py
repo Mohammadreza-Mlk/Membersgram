@@ -10,6 +10,8 @@ from function.BuyCoin import BuyCoin
 import sys, time
 from watchlog import Watchlog
 watchlog_instance = Watchlog()
+from function.result import log_test_result
+
 
 def OrderMemberByCoin(driver):
 
@@ -20,11 +22,11 @@ def OrderMemberByCoin(driver):
             RetryButton = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Retry"]')
             print("Package Member is : Somthing went wrong ❌")
-            watchlog_instance.increment('LoadPackageMemberByCoinFailed')
+            # watchlog_instance.increment('LoadPackageMemberByCoinFailed')
             RetryButton.click()
         else:
             print("Package Member is : Ok ✅")
-            watchlog_instance.increment('LoadPackageMemberByCoinPass')
+            # watchlog_instance.increment('LoadPackageMemberByCoinPass')
     except:
         print("")
     driver.implicitly_wait(30)
@@ -37,12 +39,14 @@ def OrderMemberByCoin(driver):
     Order50MemberByCoin.click()
     driver.implicitly_wait(30)
     try:
+        driver.implicitly_wait(30)
         InsufficientBalance = driver.find_element(by=AppiumBy.XPATH,
-                    value='//android.widget.TextView[@text="Insufficient Balance"]')
+                    value='//android.widget.TextView[@text="Not enough coins"]')
         if InsufficientBalance:
-            CancelButtom = driver.find_element(by=AppiumBy.XPATH,
-                        value='//android.widget.Button[@text="Cancel"]')
-            CancelButtom.click()
+            driver.implicitly_wait(30)
+            GotitButtom = driver.find_element(by=AppiumBy.XPATH,
+                        value='//android.widget.Button[@text="Got it"]')
+            GotitButtom.click()
             time.sleep(2)
             BuyCoin(driver)
             driver.implicitly_wait(30)
@@ -85,10 +89,10 @@ def OrderMemberByCoin(driver):
                         value='//*[contains(@text, "Username must not be empty")]')
     if EmptyIdError:
         print("Empty Id Empty Error is : pass ✅")
-        watchlog_instance.increment('EmptyIdErrorByCoinPass')
+        # watchlog_instance.increment('EmptyIdErrorByCoinPass')
     else:
         print("Empty Id Empty Error is : Failed ❌")
-        watchlog_instance.increment('EmptyIdErrorByCoinFailed')
+        # watchlog_instance.increment('EmptyIdErrorByCoinFailed')
     driver.implicitly_wait(30)    
     UsernameInput = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
@@ -102,10 +106,10 @@ def OrderMemberByCoin(driver):
                         value='//*[contains(@text, "Format is incorrect")]')
     if FormatIdError:
         print("Format Id incorrect Error is : pass ✅")
-        watchlog_instance.increment('FormatIdIncorrectErrorByCoinPass')
+        # watchlog_instance.increment('FormatIdIncorrectErrorByCoinPass')
     else:
         print("Format Id incorrect Error is : Failed ❌")
-        watchlog_instance.increment('FormatIdIncorrectErrorByCoinFailed')
+        # watchlog_instance.increment('FormatIdIncorrectErrorByCoinFailed')
     UsernameInput =   driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.EditText[@resource-id="gram.members.android:id/textInputEditTextUserName"]')
     UsernameInput.send_keys("testpnx1")
@@ -133,10 +137,12 @@ def OrderMemberByCoin(driver):
         GotItButton.click()
         if GotItButton:
             print("Order Member By Coin is : pass ✅")
-            watchlog_instance.increment('OrderMemberByCoinIsPass')
+            # watchlog_instance.increment('OrderMemberByCoinIsPass')
+            log_test_result("order member by coin", "pass")
         else:
             print("Order Member By Coin is : Failed ❌")
-            watchlog_instance.increment('OrderMemberByCoinFalse')
+            log_test_result("order member by coin", "failed")
+            # watchlog_instance.increment('OrderMemberByCoinFalse')
     
         time.sleep(2)
         HomeTab = driver.find_element(by=AppiumBy.XPATH,
@@ -206,9 +212,11 @@ def OrderMemberByCoin(driver):
     SeccessfulPayment.click()
 
     if SeccessfulPayment:
+        
         GotItButton = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.Button[@text="Got it"]')
         GotItButton.click()
+        log_test_result("order country member by coin", "pass")
         HomeTab = driver.find_element(by=AppiumBy.XPATH,
                         value='//android.widget.FrameLayout[@content-desc="Home"]')
         HomeTab.click()

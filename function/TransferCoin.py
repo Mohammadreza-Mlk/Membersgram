@@ -8,6 +8,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 import sys, time
 from watchlog import Watchlog
 watchlog_instance = Watchlog()
+from function.result import log_test_result
+
 
 def TransferCoin(driver):
     
@@ -47,8 +49,10 @@ def TransferCoin(driver):
 
     if EmailFormatError:
         print("Email format Incorrect is : pass ✅ ")
+        log_test_result("Email format in transfer coin", "pass")
     else:
         print("Email format Incorrect is : Failed ❌")
+        log_test_result("Email format in transfer coin", "failed")
 
     ########  Email not register before 
 
@@ -116,12 +120,13 @@ def TransferCoin(driver):
                     value='//android.widget.Button[@text="OK"]')
         okButton.click()
         print("coins Range for transfer is : pass ✅ ")
-        watchlog_instance.increment('transferCoinPass')
+        # watchlog_instance.increment('transferCoinPass')
+        log_test_result("transfer coin", "pass")
         HomePage = driver.find_element(by=AppiumBy.XPATH,
                     value='(//android.widget.FrameLayout[@resource-id="gram.members.android:id/navigation_bar_item_icon_container"])[1]')
         HomePage.click()
     else:
         print("coins Range for transfer is : Failed ❌")
-        watchlog_instance.increment('transferCoin')
+        # watchlog_instance.increment('transferCoin')
     
    

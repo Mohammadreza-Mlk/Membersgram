@@ -9,6 +9,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 import sys, time
 from watchlog import Watchlog
 watchlog_instance = Watchlog()
+from function.result import log_test_result
  
 def OrderViewByCoin(driver):
     time.sleep(3)
@@ -32,9 +33,7 @@ def OrderViewByCoin(driver):
     view100.click()
 
     driver.implicitly_wait(5)
-    PostLink = driver.find_element(by=AppiumBy.XPATH,
-                value='//android.widget.TextView[@text="Please enter the link to the desired post"]')
-
+    
 
     NextButton = driver.find_element(by=AppiumBy.XPATH,
                 value='//android.widget.Button[@text="Next"]')
@@ -44,10 +43,10 @@ def OrderViewByCoin(driver):
                 value='//android.widget.TextView[@text="Link must not be empty"]')
     if LinkEmpty:
         print("Link Empty in view one post is : pass ✅ ")
-        watchlog_instance.increment('LinkEmptyInViewOnePostByCoinPass')
+        # watchlog_instance.increment('LinkEmptyInViewOnePostByCoinPass')
     else:
         print("Link Empty in view one post is : Failed ❌")
-        watchlog_instance.increment('LinkEmptyInViewOnePostByCoinFailed')
+        # watchlog_instance.increment('LinkEmptyInViewOnePostByCoinFailed')
 
     driver.implicitly_wait(5)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
@@ -60,10 +59,10 @@ def OrderViewByCoin(driver):
                 value='//android.widget.TextView[@text="Format is incorrect"]')
     if FormatError:
         print("Format link incorrect in view one post is : pass ✅ ")
-        watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByCoinPass')
+        # watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByCoinPass')
     else:
         print("Format link incorrect in view one post is : Failed ❌")
-        watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByCoinFailed')
+        # watchlog_instance.increment('FormatLinkIncorrectInViewOnePostByCoinFailed')
 
     PostLink.send_keys("t.me/testpnx1/3")    
     NextButton.click()
@@ -77,8 +76,8 @@ def OrderViewByCoin(driver):
                     value='//android.widget.TextView[@text="Successful payment"]')
     if SeccessfulView:
         print("Order View in view one post is : pass ✅ ")
-      
-        watchlog_instance.increment('OrderViewOnePostByCoinPass')
+        log_test_result("order view one post by coin", "pass")
+        # watchlog_instance.increment('OrderViewOnePostByCoinPass')
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
@@ -88,7 +87,8 @@ def OrderViewByCoin(driver):
         HomePage.click()
     else:
         print("Order View in view one post is : Failed ❌")
-        watchlog_instance.increment('OrderViewOnePostByCoinFailed')
+        log_test_result("order view one post by coin", "failed")
+        # watchlog_instance.increment('OrderViewOnePostByCoinFailed')
         
 
 
@@ -120,10 +120,10 @@ def OrderViewByCoin(driver):
                 value='//android.widget.TextView[@text="Username must not be empty"]')
     if LinkEmpty:
         print("Username Empty in view for 5 post is : pass ✅ ")
-        watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByCoinPass')
+        # watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByCoinPass')
     else:
         print("Username Empty in view for 5 post is : Failed ❌")
-        watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByCoinFailed')
+        # watchlog_instance.increment('UsernameEmptyInViewFor_5_PostByCoinFailed')
 
     driver.implicitly_wait(5)
     PostLink = driver.find_element(by=AppiumBy.XPATH,
@@ -136,10 +136,10 @@ def OrderViewByCoin(driver):
                 value='//android.widget.TextView[@text="Format is incorrect"]')
     if FormatError:
         print("Format link incorrect in view for 5 post is : pass ✅ ")
-        watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByCoinPass')
+        # watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByCoinPass')
     else:
         print("Format link incorrect in view for 5 post is : Failed ❌")
-        watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByCoinFailed')
+        # watchlog_instance.increment('FormatLinkIncorrectInView_5_PostByCoinFailed')
 
     PostLink.send_keys("t.me/testpnx1")    
     NextButton.click()
@@ -156,7 +156,8 @@ def OrderViewByCoin(driver):
                     value='//android.widget.TextView[@text="Successful payment"]')
     if SeccessfulView:
         print("Order View in view for 5 post is : pass ✅ ")
-        watchlog_instance.increment('Order_5_PostViewByCoinPass')
+        log_test_result("order view five post by coin", "pass")
+        # watchlog_instance.increment('Order_5_PostViewByCoinPass')
         GotItView = driver.find_element(by=AppiumBy.XPATH,
                     value='//android.widget.Button[@text="Got it"]')
         GotItView.click()
@@ -166,12 +167,7 @@ def OrderViewByCoin(driver):
         HomePage.click()
     else:
         print("Order View in view for 5 post is : Failed ❌")
+        log_test_result("order view five post by coin", "failed")
         
         
-        
-        
-            
-        # OnePost = driver.find_element(by=AppiumBy.XPATH,
-        #             value='//android.widget.Button[@text="One Post"]')
-        # OnePost.click()
-        
+         

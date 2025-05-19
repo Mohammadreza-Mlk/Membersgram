@@ -49,10 +49,3 @@ def shot(driver):
     print(f"ویدئو ضبط‌شده در مسیر ذخیره شد: {video_path}")
 
     
-    
-# def shot(driver):
-  
-#     # گرفتن اسکرین‌شات
-#     screenshot_path = "screenshot.png"
-#     driver.get_screenshot_as_file(screenshot_path)
-#     print(f"اسکرین‌شات ذخیره شد در: {screenshot_path}")
